@@ -1,0 +1,35 @@
+# Operating system
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local secrets and environment configuration
+.env
+.env.*
+!.env.example
+
+# .NET
+**/bin/
+**/obj/
+
+# Go
+**/*.exe
+**/*.test
+
+# Java
+*.class
+*.jar
+
+# JavaScript / Node.js
+**/node_modules/
+
+# PHP / Composer
+**/vendor/
+
+# Rust / Cargo
+**/target/
+
+# Editors and temporary files
+*.swp
+*.swo
+*~

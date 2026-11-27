@@ -1,0 +1,13 @@
+name: learn-docker-bab07
+services:
+  katalog:
+    image: busybox:1.37
+    command: ["httpd", "-f", "-p", "8080", "-h", "/srv"]
+    volumes:
+      - ./katalog:/srv:ro
+    ports:
+      - "127.0.0.1:8077:8080"
+
+  pembaca:
+    image: alpine:3.22
+    command: ["wget", "-qO-", "http://katalog:8080/buku.txt"]

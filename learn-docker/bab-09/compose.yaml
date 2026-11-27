@@ -1,0 +1,24 @@
+name: learn-docker-bab09
+services:
+  katalog:
+    build: ../bab-08
+    ports:
+      - "127.0.0.1:8079:8080"
+    volumes:
+      - stok:/srv/data
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/buku"]
+      interval: 3s
+      timeout: 2s
+      retries: 5
+      start_period: 3s
+
+  pembaca:
+    image: alpine:3.22
+    depends_on:
+      katalog:
+        condition: service_healthy
+    command: ["wget", "-qO-", "http://katalog:8080/buku"]
+
+volumes:
+  stok:
